@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "assets/*": ["./assets/*"],
+      "components/*": ["./components/*"],
+      "config/*": ["./config/*"],
+      "features/*": ["./features/*"],
+      "app/*": ["./app/*"],
+      "interfaces/*": ["./interfaces/*"],
+      "services/*": ["./services/*"],
+      "country/*": ["./country/*"],
+      "additionalInfo/*": ["./additionalInfo/*"],
+      "types/*": ["./types/*"],
+      "helpers/*": ["./helpers/*"]
+    },
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+  },
+  "exclude": ["node_modules", "build"]
+}
