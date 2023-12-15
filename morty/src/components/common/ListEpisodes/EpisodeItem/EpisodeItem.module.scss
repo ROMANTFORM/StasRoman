@@ -1,0 +1,85 @@
+.episodes_item {
+  border-radius: 9px;
+  background: #3C3E44;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0px 4px 6px -1px rgba(0, 0, 0, 0.10);
+  margin: 0 0 26px;
+  width: calc(50% - 13px);
+  list-style: none;
+
+  .card__conatiner {
+    display: flex;
+
+    .card_prevew {
+      display: flex;
+
+      .card_img {
+        border-radius: 9px 0 0 9px;
+        max-height: 220px;
+      }
+    }
+
+    .card_descr__container {
+      padding: 12px 14px;
+      flex-direction: column;
+      align-items: flex-start;
+      display: flex;
+
+      .card__title_container {
+        margin: 0 0 12px;
+
+        .card__title {
+          color: #F5F5F5;
+          font-size: 27px;
+          font-weight: 800;
+          line-height: 29.7px; /* 110% */
+        }
+
+        .descr_wrap{
+          display: flex;
+
+          .status_color{
+            &.green{
+
+            }
+            &.red{
+
+            }
+          }
+          .card__title_descr {
+            color: #FFF;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 26px; /* 162.5% */
+            text-transform: capitalize;
+          }
+        }
+
+
+      }
+
+      .card__seen_container,
+      .card__location_container {
+
+        .card__label {
+          color: #9E9E9E;
+
+          font-family: Roboto;
+          font-size: 15px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 26px; /* 173.333% */
+        }
+
+        .card__descr {
+          color: #F5F5F5;
+
+          font-family: Roboto;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 29.25px; /* 162.5% */
+        }
+      }
+    }
+  }
+}

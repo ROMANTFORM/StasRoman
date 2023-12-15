@@ -1,22 +1,22 @@
-import logo from './assets/vectors/logo.svg';
-import './App.css';
+import React from 'react';
+import styles from './App.module.scss';
+import Header from "components/common/Header/Header";
+import Footer from "components/common/Footer/Footer";
+import PageRoutes from "components/pages/PageRoutes/PageRoutes";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        head
-      </header>
-      <main>
-        <h2>body here</h2>
-      </main>
-      <footer>
-        footer
-      </footer>
+    return (
+        <div className={styles.app_wrap}>
+            <Header/>
+            <main className={styles.site_wrap}>
+                <div className={styles.main_wrap}>
+                    <PageRoutes/>
+                </div>
+            </main>
+            <Footer/>
 
-    </div>
-  );
+        </div>
+    );
 }
 
 export default App;
