@@ -7,15 +7,12 @@ import PageRoutes from "components/pages/PageRoutes/PageRoutes";
 function App() {
     return (
         <div className={styles.app_wrap}>
-
             <Header/>
-
             <main className={styles.site_wrap}>
                 <div className={styles.main_wrap}>
                     <PageRoutes/>
                 </div>
             </main>
-
             <Footer/>
 
         </div>

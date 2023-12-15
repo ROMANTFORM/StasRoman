@@ -1,14 +1,18 @@
 import React from 'react';
 import styles from './Main.module.scss'
+import FilmFilter from "components/common/FilmFilter/FilmFilter";
+import ListEpisodes from "components/common/ListEpisodes/ListEpisodes";
 
 const Main = () => {
     // const getUserAllInfo = userInfo.useGetUserInfoRequestQuery(null);
 
     return (
-        <div className={styles.main_wrap}>
-            <h2>Hello trst</h2>
+        <div className={'home-wrap'}>
+            <FilmFilter/>
+
+            <ListEpisodes/>
         </div>
-)
+    )
 };
 
 export default Main;
