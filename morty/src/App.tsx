@@ -1,16 +1,19 @@
 import React from 'react';
-import './App.scss';
+import styles from './App.module.scss';
 import Header from "components/common/Header/Header";
 import Footer from "components/common/Footer/Footer";
 import PageRoutes from "components/pages/PageRoutes/PageRoutes";
 
 function App() {
     return (
-        <div className="App">
+        <div className={styles.app_wrap}>
+
             <Header/>
 
-            <main>
-                <PageRoutes/>
+            <main className={styles.site_wrap}>
+                <div className={styles.main_wrap}>
+                    <PageRoutes/>
+                </div>
             </main>
 
             <Footer/>
