@@ -13,12 +13,14 @@
       line-height: 24px; /* 150% */
       letter-spacing: 0.5px;
       text-transform: uppercase;
-      min-height: 58px;
+      height: 56px;
       min-width: 160px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      border: 0;
+      border-radius: 4px;
     }
   }
 
