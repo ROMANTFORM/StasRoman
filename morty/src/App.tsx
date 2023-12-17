@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './App.module.scss';
-import Header from "components/common/Header/Header";
-import Footer from "components/common/Footer/Footer";
-import PageRoutes from "components/pages/PageRoutes/PageRoutes";
+import Header from "components/common/Header";
+import Footer from "components/common/Footer";
+import PageRoutes from "components/pages/PageRoutes";
 
 function App() {
     return (
