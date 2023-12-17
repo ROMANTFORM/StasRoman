@@ -55,7 +55,7 @@ const FormFilter = ({}) => {
                            alert(JSON.stringify(values, null, 2));
                            setSubmitting(false);
                            setOpenSelectFilter(false);
-                       }, 500);
+                       }, 100);
                    }}
                    >
                    {({ values, handleChange, setFieldValue }) => {
