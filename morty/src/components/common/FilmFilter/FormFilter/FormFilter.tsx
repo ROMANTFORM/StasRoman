@@ -63,9 +63,7 @@ const FormFilter = ({}) => {
                            <>
                                <Form className={styles.form}>
                                    <div className={styles.select_item_wrap}>
-
                                        <div
-
                                            onClick={() => {
                                                setOpenSelectFilter(!openSelectFilter)
                                            }}
@@ -78,7 +76,7 @@ const FormFilter = ({}) => {
 
                                        {
                                            openSelectFilter &&
-                                           <FormGroup>
+                                           <FormGroup className={styles.form_checkbox_group}>
                                                <FormControlLabel labelPlacement="start" checked={values.character} onChange={() => setFieldValue('character', !values.character)} name="character" control={<Checkbox  />} label="Character" />
                                                <FormControlLabel labelPlacement="start" checked={values.location} onChange={() => setFieldValue('location', !values.location)}  name="location" control={<Checkbox />} label="Location" />
                                                <FormControlLabel labelPlacement="start" checked={values.episodes} onChange={() => setFieldValue('episodes', !values.episodes)}    name="episodes" control={<Checkbox />} label="Episodes" />
@@ -93,12 +91,11 @@ const FormFilter = ({}) => {
 
                                        {
                                            openSelectFilter &&
-                                           <>
+                                           <div className={styles.inputs_wrap_field}>
                                                {
                                                    values.episodes &&
                                                    <>
                                                        <Field id="episode_episode" name="episode_episode" placeholder="Add episode"/>
-
                                                    </>
                                                }
 
@@ -106,8 +103,10 @@ const FormFilter = ({}) => {
                                                {
                                                    values.location &&
                                                    <>
-                                                       <Field id="location_type" name="location_type" placeholder="Add type"/>
-                                                       <Field id="location_demantion" name="location_demantion" placeholder="Add demantion"/>
+                                                       <Field id="location_type" name="location_type"
+                                                              placeholder="Add type"/>
+                                                       <Field id="location_demantion" name="location_demantion"
+                                                              placeholder="Add demantion"/>
                                                    </>
                                                }
 
@@ -120,7 +119,7 @@ const FormFilter = ({}) => {
                                                        <Field id="character_gender" name="character_gender" placeholder="Add gender"/>
                                                    </>
                                                }
-                                           </>
+                                           </div>
                                        }
 
 
