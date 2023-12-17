@@ -1,9 +1,9 @@
 import React from 'react';
 import {Routes, Route, Navigate} from 'react-router-dom';
-import routes from '../../routes/routes';
-import About from "components/pages/About/About";
-import Main from "components/pages/Main/Main";
-import NotFound from "components/pages/NotFound/NotFound";
+import routes from 'components/routes/routes';
+import About from "components/pages/About";
+import Main from "components/pages/Main";
+import NotFound from "components/pages/NotFound";
 
 
 const PageRoutes = () => {
