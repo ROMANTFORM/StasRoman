@@ -1,14 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import styles from './FilmFilter.module.scss'
-import { Form, Formik } from 'formik';
 import FormFilter from "components/common/FilmFilter/FormFilter/FormFilter";
 const FilmFilter = () => {
 
     const [openFilter, setOpenFilter] = useState(false);
 
-
     const clearedFilterData = () => {
-        console.log('s')
+        console.log('clearedFilterData')
     };
 
     useEffect(() => {

@@ -18,12 +18,13 @@
       background: #F5F5F5;
       cursor: pointer;
 
+
       .icon {
         display: flex;
         position: absolute;
         right: 12px;
         top: calc(50% - 12px);
-        transition: all 0.5s ease-in;
+        transition: all 0.25s ease-in;
       }
 
       &.active {
