@@ -4,6 +4,7 @@
 
   .select_item_wrap {
     margin: 0 28px 0 0;
+    position: relative;
 
     .select_item {
       position: relative;
@@ -17,12 +18,13 @@
       background: #F5F5F5;
       cursor: pointer;
 
+
       .icon {
         display: flex;
         position: absolute;
         right: 12px;
         top: calc(50% - 12px);
-        transition: all 0.5s ease-in;
+        transition: all 0.25s ease-in;
       }
 
       &.active {
@@ -32,12 +34,19 @@
       }
 
     }
+
+    .form_checkbox_group {
+      background: #fff;
+      position: absolute;
+      width: 100%;
+    }
   }
 
   .inputs_wrap {
     display: flex;
     flex-direction: column;
     margin: 0 28px 0 0;
+    position: relative;
 
     input {
       padding: 0 12px;
@@ -57,6 +66,12 @@
         border: 0;
         border-radius: 0 0 4px 4px;
       }
+    }
+
+    .inputs_wrap_field{
+      position: absolute;
+      width: 100%;
+      top: 56px;
     }
   }
 
