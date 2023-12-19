@@ -1,19 +1,22 @@
 import React, {useState, useEffect} from 'react';
 import History from "components/common/History/History";
+import { useParams } from 'react-router-dom';
 // import Sidebar from './Sidebar';
 // import { HiOutlineDotsVertical } from "react-icons/hi";
 // import { BsDownload, BsExclamationCircle } from "react-icons/bs";
 // import { IoMdClose } from "react-icons/io";
 
 
-function DetailCard({id}) {
+function DetailCard() {
 
     const [fetchData, setFetchData] = useState([]);
     const [fetchEpisode, setFetchEpisode] = useState([]);
     const [visibleBtns, setVisibleBtns] = useState(false);
     const [visibleSidebar, setVisibleSidebar] = useState(false);
 
-    let api = `https://rickandmortyapi.com/api/character/${id}`;
+    const {cardId} = useParams();
+
+    let api = `https://rickandmortyapi.com/api/character/${cardId}`;
     // let episodeApi = fetchData?.episode?.[0];
 
     useEffect(() => {

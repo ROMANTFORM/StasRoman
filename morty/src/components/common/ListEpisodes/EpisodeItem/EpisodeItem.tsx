@@ -10,7 +10,7 @@ const ListEpisodes = ({listEpisodes}: any) => {
             return(
                 (
                     <li key={episod.id} className={styles.episodes_item}>
-                        <Link to={'/single/'+episod.id} className={styles.card__conatiner}>
+                        <Link to={'/detail/'+episod.id} className={styles.card__conatiner}>
                             {/*TODO выше измени на правильную урлу!!!*/}
                             <div className={styles.card_prevew}>
                                 <img className={styles.card_img} src={episod.image} alt="pic"/>
