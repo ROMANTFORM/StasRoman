@@ -4,7 +4,6 @@ import Header from "components/common/Header";
 import Footer from "components/common/Footer";
 import PageRoutes from "components/pages/PageRoutes";
 
-// йцукенг
 function App() {
     return (
         <div className={styles.app_wrap}>
