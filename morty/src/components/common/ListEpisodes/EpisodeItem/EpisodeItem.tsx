@@ -6,7 +6,7 @@ const ListEpisodes = ({listEpisodes}: any) => {
 
     return (
         listEpisodes.map((episod) => {
-            // console.log(episod);
+            console.log(episod);
             return(
                 (
                     <li key={episod.id} className={styles.episodes_item}>

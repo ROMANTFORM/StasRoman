@@ -33,9 +33,7 @@ const FilmFilter = () => {
                 {
                     openFilter &&
                     <div className={styles.filter_form_wrap}>
-                        <div className={styles.filter_form}>
-                            <FormFilter/>
-                        </div>
+                        <FormFilter/>
                     </div>
                 }
 
