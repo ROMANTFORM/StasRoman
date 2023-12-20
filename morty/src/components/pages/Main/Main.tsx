@@ -14,11 +14,6 @@ const Main = () => {
     const [isLoadingPage, setLoadingPage] = useState(true);
 
 
-    useEffect(() => {
-        console.log('page', page);
-        console.log('filterDataEpisodes', filterDataEpisodes);
-    }, [page]);
-
     const {
         data: episodesData,
         isLoading: isLoadingEpisodes,
@@ -27,7 +22,7 @@ const Main = () => {
 
     useEffect(() => {
         // Обработка данных
-        console.log(episodesData)
+        // console.log(episodesData)
         if (episodesData) {
             setCountPage(episodesData.info.pages)
             setListEpisodesData(episodesData.results)
@@ -43,7 +38,7 @@ const Main = () => {
     }, [episodesData, isLoadingEpisodes, errorEpisodesRequest]);
 
     useEffect(() => {
-        console.log(filterDataEpisodes);
+        // console.log(filterDataEpisodes);
         if (filterDataEpisodes) {
             setCountPage(filterDataEpisodes.info.pages)
             setListEpisodesData(filterDataEpisodes.results)

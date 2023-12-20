@@ -17,7 +17,8 @@ const FilmFilter = ({setPage, setFilterDataEpisodes}: propsInterface) => {
     };
 
     useEffect(() => {
-        if (openFilter) {
+        console.log(openFilter)
+        if (!openFilter) {
             clearedFilterData();
         }
     }, [openFilter]);
