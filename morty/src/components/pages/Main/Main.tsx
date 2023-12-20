@@ -1,27 +1,51 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from './Main.module.scss'
 import FilmFilter from "components/common/FilmFilter/FilmFilter";
 import ListEpisodes from "components/common/ListEpisodes/ListEpisodes";
-import {useGetEpisodesRequestQuery, useGetEpisodesCharacterQuery} from "features/episodes/episodes";
+import {useGetEpisodesRequestQuery} from "features/episodes/episodes";
 import PaginationRounded from "components/common/Pagination/Pagination";
 import SkeletonItem from "components/common/ListEpisodes/SkeletonLoading";
 
 const Main = () => {
-    // Using a query hook automatically fetches data and returns query values
-    const {data, isLoading} = useGetEpisodesRequestQuery(null);
+    const [filterDataEpisodes, setFilterDataEpisodes] = useState(null);
+    const [listEpisodesData, setListEpisodesData] = useState(null);
+    const [isLoadingPage, setLoadingPage] = useState(true);
 
-    const [filterDataEpisodes, setFilterDataEpisodes] = useState(undefined);
-    const {data:episodesCharacter, isLoading: isLoadingEpisodesCharacter} = useGetEpisodesCharacterQuery(filterDataEpisodes);
+    const {
+        data: episodesData,
+        isLoading: isLoadingEpisodes,
+        error: errorEpisodesRequest
+    } = useGetEpisodesRequestQuery(null);
 
-    console.log(episodesCharacter);
+    useEffect(() => {
+        // Обработка данных
+        if (episodesData) {
+            setListEpisodesData(episodesData.results)
+        }
 
+        setLoadingPage(isLoadingEpisodes)
+
+        // Обработка ошибки
+        if (errorEpisodesRequest) {
+            // Ваши действия при возникновении ошибки
+            console.error('Ошибка запроса:', errorEpisodesRequest);
+        }
+    }, [episodesData, isLoadingEpisodes, errorEpisodesRequest]);
+
+    useEffect(() => {
+        console.log(filterDataEpisodes);
+        if (filterDataEpisodes) {
+            setListEpisodesData(filterDataEpisodes.results)
+        }
+    }, [filterDataEpisodes]);
 
     return (
         <div className={styles.main_wrap}>
             <FilmFilter setFilterDataEpisodes={setFilterDataEpisodes}/>
 
             {
-                isLoading ? <SkeletonItem width={'100%'} height={250} count={3}/> : <ListEpisodes listEpisodes={data.results}/>
+                isLoadingPage ? <SkeletonItem width={'100%'} height={250} count={3}/> :
+                    <ListEpisodes listEpisodes={listEpisodesData}/>
             }
 
             <PaginationRounded/>
