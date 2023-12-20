@@ -6,6 +6,9 @@ import History from "components/common/History/History";
 // import { IoMdClose } from "react-icons/io";
 
 
+
+// new branch
+
 function DetailCard({id}) {
 
     const [fetchData, setFetchData] = useState([]);
