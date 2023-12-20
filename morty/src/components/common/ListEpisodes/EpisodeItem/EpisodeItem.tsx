@@ -2,11 +2,10 @@ import React from 'react';
 import styles from './EpisodeItem.module.scss'
 import { Link } from 'react-router-dom';
 
-const ListEpisodes = ({listEpisodes}: any) => {
-
+const EpisodeItem = ({listEpisodes}: any) => {
     return (
+        listEpisodes &&
         listEpisodes.map((episod) => {
-            // console.log(episod);
             return(
                 (
                     <li key={episod.id} className={styles.episodes_item}>
@@ -42,4 +41,4 @@ const ListEpisodes = ({listEpisodes}: any) => {
     );
 };
 
-export default ListEpisodes;
+export default EpisodeItem;

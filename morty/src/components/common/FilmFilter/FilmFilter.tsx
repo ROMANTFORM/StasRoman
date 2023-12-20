@@ -1,7 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import styles from './FilmFilter.module.scss'
 import FormFilter from "components/common/FilmFilter/FormFilter/FormFilter";
-const FilmFilter = () => {
+
+
+interface propsInterface {
+    setFilterDataEpisodes: Function;
+}
+
+const FilmFilter = ({setFilterDataEpisodes}: propsInterface) => {
 
     const [openFilter, setOpenFilter] = useState(false);
 
@@ -33,9 +39,7 @@ const FilmFilter = () => {
                 {
                     openFilter &&
                     <div className={styles.filter_form_wrap}>
-                        <div className={styles.filter_form}>
-                            <FormFilter/>
-                        </div>
+                        <FormFilter setFilterDataEpisodes={setFilterDataEpisodes}/>
                     </div>
                 }
 
