@@ -5,9 +5,10 @@ import FormFilter from "components/common/FilmFilter/FormFilter/FormFilter";
 
 interface propsInterface {
     setFilterDataEpisodes: Function;
+    setPage: Function;
 }
 
-const FilmFilter = ({setFilterDataEpisodes}: propsInterface) => {
+const FilmFilter = ({setPage, setFilterDataEpisodes}: propsInterface) => {
 
     const [openFilter, setOpenFilter] = useState(false);
 
@@ -39,7 +40,7 @@ const FilmFilter = ({setFilterDataEpisodes}: propsInterface) => {
                 {
                     openFilter &&
                     <div className={styles.filter_form_wrap}>
-                        <FormFilter setFilterDataEpisodes={setFilterDataEpisodes}/>
+                        <FormFilter setPage={setPage} setFilterDataEpisodes={setFilterDataEpisodes}/>
                     </div>
                 }
 

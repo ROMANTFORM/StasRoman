@@ -7,9 +7,17 @@ import PaginationRounded from "components/common/Pagination/Pagination";
 import SkeletonItem from "components/common/ListEpisodes/SkeletonLoading";
 
 const Main = () => {
+    const [page, setPage] = React.useState(1);
+    const [countPage, setCountPage] = React.useState(1);
     const [filterDataEpisodes, setFilterDataEpisodes] = useState(null);
     const [listEpisodesData, setListEpisodesData] = useState(null);
     const [isLoadingPage, setLoadingPage] = useState(true);
+
+
+    useEffect(() => {
+        console.log('page', page);
+        console.log('filterDataEpisodes', filterDataEpisodes);
+    }, [page]);
 
     const {
         data: episodesData,
@@ -19,7 +27,9 @@ const Main = () => {
 
     useEffect(() => {
         // Обработка данных
+        console.log(episodesData)
         if (episodesData) {
+            setCountPage(episodesData.info.pages)
             setListEpisodesData(episodesData.results)
         }
 
@@ -35,20 +45,24 @@ const Main = () => {
     useEffect(() => {
         console.log(filterDataEpisodes);
         if (filterDataEpisodes) {
+            setCountPage(filterDataEpisodes.info.pages)
             setListEpisodesData(filterDataEpisodes.results)
         }
     }, [filterDataEpisodes]);
 
     return (
         <div className={styles.main_wrap}>
-            <FilmFilter setFilterDataEpisodes={setFilterDataEpisodes}/>
+            <FilmFilter setPage={setPage} setFilterDataEpisodes={setFilterDataEpisodes}/>
 
             {
                 isLoadingPage ? <SkeletonItem width={'100%'} height={250} count={3}/> :
                     <ListEpisodes listEpisodes={listEpisodesData}/>
             }
+            {
+                countPage && <PaginationRounded countPage={countPage} page={page} setPage={setPage} />
+            }
 
-            <PaginationRounded/>
+
         </div>
     )
 };

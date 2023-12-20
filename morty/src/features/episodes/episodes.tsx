@@ -16,6 +16,13 @@ export const episodesApi = createApi({
                 }
             ),
         }),
+        getPaginationEpisodesCharacter: builder.mutation({
+            query: (params) => (
+                {
+                    url: `/character/?page=${params.page}name=${params.name}&status=${params.status}&species=${params.species}&type=${params.type}&gender=${params.gender}`
+                }
+            ),
+        }),
 
         getEpisodesLocations: builder.mutation({
             query: (params) => (
@@ -39,6 +46,7 @@ export const episodesApi = createApi({
 
 export const {
     useGetEpisodesRequestQuery,
+    useGetPaginationEpisodesCharacterMutation,
     useGetEpisodesCharacterMutation,
     useGetEpisodesLocationsMutation,
     useGetEpisodesEpisodesMutation,
