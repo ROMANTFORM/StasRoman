@@ -1,22 +1,26 @@
 import React, {useState, useEffect} from 'react';
 import styles from './FilmFilter.module.scss'
 import FormFilter from "components/common/FilmFilter/FormFilter/FormFilter";
+import {useClearFilterMutation} from "features/episodes/episodes";
 
 
 interface propsInterface {
     setFilterDataEpisodes: Function;
+    setPage: Function;
 }
 
-const FilmFilter = ({setFilterDataEpisodes}: propsInterface) => {
+const FilmFilter = ({setPage, setFilterDataEpisodes}: propsInterface) => {
 
     const [openFilter, setOpenFilter] = useState(false);
 
+    const [ClearFilter] = useClearFilterMutation();
+
     const clearedFilterData = () => {
-        console.log('clearedFilterData')
+        ClearFilter(null);
     };
 
     useEffect(() => {
-        if (openFilter) {
+        if (!openFilter) {
             clearedFilterData();
         }
     }, [openFilter]);
@@ -39,14 +43,12 @@ const FilmFilter = ({setFilterDataEpisodes}: propsInterface) => {
                 {
                     openFilter &&
                     <div className={styles.filter_form_wrap}>
-                        <FormFilter setFilterDataEpisodes={setFilterDataEpisodes}/>
+                        <FormFilter setPage={setPage} setFilterDataEpisodes={setFilterDataEpisodes}/>
                     </div>
                 }
 
 
             </div>
-
-
         </>
     )
 };

@@ -9,9 +9,10 @@ import {useGetEpisodesCharacterMutation} from "features/episodes/episodes";
 
 interface propsInterface {
     setFilterDataEpisodes: Function;
+    setPage: Function;
 }
 
-const FormFilter = ({setFilterDataEpisodes}: propsInterface) => {
+const FormFilter = ({setPage,setFilterDataEpisodes}: propsInterface) => {
     const [openSelectFilter, setOpenSelectFilter] = useState(false);
 
     const cn: Function = classNames.bind(styles);
@@ -82,6 +83,7 @@ const FormFilter = ({setFilterDataEpisodes}: propsInterface) => {
 
                     setOpenSelectFilter(false);
                     setFilterDataEpisodes(result.data);
+                    setPage(1);
                 }
 
             }
