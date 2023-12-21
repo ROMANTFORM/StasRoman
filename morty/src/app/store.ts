@@ -1,10 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit'
 
 import {episodesApi} from 'features/episodes/episodes';
-
+import episodesReducer from 'features/episodes/episodes';
 export const store = configureStore({
     reducer: {
         [episodesApi.reducerPath]: episodesApi.reducer,
+        episodes: episodesReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({ serializableCheck: false }).concat(
