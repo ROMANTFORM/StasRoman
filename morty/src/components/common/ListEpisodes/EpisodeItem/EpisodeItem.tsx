@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 const EpisodeItem = ({listEpisodes}: any) => {
 
     return (
+        listEpisodes &&
         listEpisodes.map((episod) => {
-            // console.log(episod);
             return(
                 (
                     <li key={episod.id} className={styles.episodes_item}>

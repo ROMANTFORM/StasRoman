@@ -1,12 +1,18 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useState} from 'react';
 import styles from './FormFilter.module.scss'
 import {Formik, Field, Form, FormikHelpers} from 'formik';
 import {FormGroup, FormControlLabel} from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import classNames from 'classnames/bind';
+import {useGetEpisodesCharacterMutation} from "features/episodes/episodes";
 
-const FormFilter = ({}) => {
+interface propsInterface {
+    setFilterDataEpisodes: Function;
+    setPage: Function;
+}
+
+const FormFilter = ({setPage,setFilterDataEpisodes}: propsInterface) => {
     const [openSelectFilter, setOpenSelectFilter] = useState(false);
 
     const cn: Function = classNames.bind(styles);
@@ -15,7 +21,8 @@ const FormFilter = ({}) => {
         active: openSelectFilter,
     });
 
-    // const [visibleCheckbox, setVisibleCheckbox] = useState(false);
+    const [CharacterMutation] = useGetEpisodesCharacterMutation();
+
 
     interface Values {
         keywords: string,
@@ -37,7 +44,6 @@ const FormFilter = ({}) => {
         location: boolean,
         episodes: boolean,
     }
-
 
     return (
 
@@ -64,13 +70,23 @@ const FormFilter = ({}) => {
                     episodes: false,
 
                 }}
-                onSubmit={(values: Values, {setSubmitting}: FormikHelpers<Values>) => {
-                    setTimeout(() => {
-                        alert(JSON.stringify(values, null, 2));
-                        setSubmitting(false);
-                        setOpenSelectFilter(false);
-                    }, 100);
-                }}
+                onSubmit={async (values: Values, {setSubmitting}: FormikHelpers<Values>) => {
+                    setSubmitting(false);
+
+                    const result: any = await CharacterMutation({
+                        name: values.character_name,
+                        status: values.character_status,
+                        species: values.character_species,
+                        type: values.character_type,
+                        gender: values.character_gender
+                    });
+
+                    setOpenSelectFilter(false);
+                    setFilterDataEpisodes(result.data);
+                    setPage(1);
+                }
+
+            }
             >
                 {({values, handleChange, setFieldValue}) => {
                     return (
@@ -78,20 +94,31 @@ const FormFilter = ({}) => {
                             <Form className={styles.form}>
                                 <div className={styles.select_item_wrap}>
                                     <div
-                                        onClick={() => {setOpenSelectFilter(!openSelectFilter)}}
+                                        onClick={() => {
+                                            setOpenSelectFilter(!openSelectFilter)
+                                        }}
                                         className={select_itemStyles}>
                                         <span className={styles.title}>Select Item</span>
                                         <span className={styles.icon}>
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.98438 9.98438H17.0156L12 15L6.98438 9.98438Z" fill="#272B33"/></svg>
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg"><path
+                                                d="M6.98438 9.98438H17.0156L12 15L6.98438 9.98438Z"
+                                                fill="#272B33"/></svg>
                                         </span>
                                     </div>
 
                                     {
                                         openSelectFilter &&
                                         <FormGroup className={styles.form_checkbox_group}>
-                                            <FormControlLabel labelPlacement="start" checked={values.character} onChange={() => setFieldValue('character', !values.character)} name="character" control={<Checkbox/>} label="Character"/>
-                                            <FormControlLabel labelPlacement="start" checked={values.location} onChange={() => setFieldValue('location', !values.location)} name="location" control={<Checkbox/>} label="Location"/>
-                                            <FormControlLabel labelPlacement="start" checked={values.episodes} onChange={() => setFieldValue('episodes', !values.episodes)} name="episodes" control={<Checkbox/>} label="Episodes"/>
+                                            <FormControlLabel labelPlacement="start" checked={values.character}
+                                                              onChange={() => setFieldValue('character', !values.character)}
+                                                              name="character" control={<Checkbox/>} label="Character"/>
+                                            <FormControlLabel labelPlacement="start" checked={values.location}
+                                                              onChange={() => setFieldValue('location', !values.location)}
+                                                              name="location" control={<Checkbox/>} label="Location"/>
+                                            <FormControlLabel labelPlacement="start" checked={values.episodes}
+                                                              onChange={() => setFieldValue('episodes', !values.episodes)}
+                                                              name="episodes" control={<Checkbox/>} label="Episodes"/>
                                         </FormGroup>
                                     }
 
@@ -107,8 +134,10 @@ const FormFilter = ({}) => {
                                             {
                                                 values.episodes &&
                                                 <>
-                                                    <Field id="episode_name" name="episode_name" placeholder="Add name (Episode)"/>
-                                                    <Field id="episode_episode" name="episode_episode" placeholder="Add episode"/>
+                                                    <Field id="episode_name" name="episode_name"
+                                                           placeholder="Add name (Episode)"/>
+                                                    <Field id="episode_episode" name="episode_episode"
+                                                           placeholder="Add episode"/>
                                                 </>
                                             }
 
@@ -116,20 +145,28 @@ const FormFilter = ({}) => {
                                             {
                                                 values.location &&
                                                 <>
-                                                    <Field id="location_name" name="location_name" placeholder="Add name (Location)"/>
-                                                    <Field id="location_type" name="location_type" placeholder="Add type"/>
-                                                    <Field id="location_demantion" name="location_demantion" placeholder="Add demantion"/>
+                                                    <Field id="location_name" name="location_name"
+                                                           placeholder="Add name (Location)"/>
+                                                    <Field id="location_type" name="location_type"
+                                                           placeholder="Add type"/>
+                                                    <Field id="location_demantion" name="location_demantion"
+                                                           placeholder="Add demantion"/>
                                                 </>
                                             }
 
                                             {
                                                 values.character &&
                                                 <>
-                                                    <Field id="character_name" name="character_name" placeholder="Add Name (Character)"/>
-                                                    <Field id="character_status" name="character_status" placeholder="Add status"/>
-                                                    <Field id="character_species" name="character_species" placeholder="Add species"/>
-                                                    <Field id="character_type" name="character_type" placeholder="Add type"/>
-                                                    <Field id="character_gender" name="character_gender" placeholder="Add gender"/>
+                                                    <Field id="character_name" name="character_name"
+                                                           placeholder="Add Name (Character)"/>
+                                                    <Field id="character_status" name="character_status"
+                                                           placeholder="Add status"/>
+                                                    <Field id="character_species" name="character_species"
+                                                           placeholder="Add species"/>
+                                                    <Field id="character_type" name="character_type"
+                                                           placeholder="Add type"/>
+                                                    <Field id="character_gender" name="character_gender"
+                                                           placeholder="Add gender"/>
                                                 </>
                                             }
                                         </div>
