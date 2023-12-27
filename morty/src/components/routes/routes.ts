@@ -2,6 +2,7 @@ const routes = {
     main: '/',
     about: '/about',
     login: '/login',
+    detail: '/detail',
     notFound: '/404',
 };
 

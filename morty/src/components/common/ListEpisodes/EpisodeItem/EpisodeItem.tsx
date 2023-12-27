@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './EpisodeItem.module.scss'
 import { Link } from 'react-router-dom';
 
-const ListEpisodes = ({listEpisodes}: any) => {
+const EpisodeItem = ({listEpisodes}: any) => {
 
     return (
         listEpisodes.map((episod) => {
@@ -10,7 +10,7 @@ const ListEpisodes = ({listEpisodes}: any) => {
             return(
                 (
                     <li key={episod.id} className={styles.episodes_item}>
-                        <Link to={'/single/'+episod.id} className={styles.card__conatiner}>
+                        <Link to={'/detail'} className={styles.card__conatiner}>
                             {/*TODO выше измени на правильную урлу!!!*/}
                             <div className={styles.card_prevew}>
                                 <img className={styles.card_img} src={episod.image} alt="pic"/>
@@ -42,4 +42,4 @@ const ListEpisodes = ({listEpisodes}: any) => {
     );
 };
 
-export default ListEpisodes;
+export default EpisodeItem;
