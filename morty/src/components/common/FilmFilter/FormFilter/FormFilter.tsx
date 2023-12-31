@@ -1,19 +1,23 @@
 import React, {useEffect} from 'react';
 import {useState} from 'react';
 import styles from './FormFilter.module.scss'
+import {useDispatch} from 'react-redux'; // Import useDispatch
 import {Formik, Field, Form, FormikHelpers} from 'formik';
 import {FormGroup, FormControlLabel} from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import classNames from 'classnames/bind';
 import {useGetEpisodesCharacterMutation} from "features/episodes/episodes";
+import {addToHistory} from "features/History/History";
 
 interface propsInterface {
     setFilterDataEpisodes: Function;
     setPage: Function;
+    setFormField: Function;
 }
 
-const FormFilter = ({setPage,setFilterDataEpisodes}: propsInterface) => {
+const FormFilter = ({setPage, setFormField, setFilterDataEpisodes}: propsInterface) => {
     const [openSelectFilter, setOpenSelectFilter] = useState(false);
+    const dispatch = useDispatch(); // Get dispatch function from Redux
 
     const cn: Function = classNames.bind(styles);
     const select_itemStyles = cn({
@@ -72,21 +76,23 @@ const FormFilter = ({setPage,setFilterDataEpisodes}: propsInterface) => {
                 }}
                 onSubmit={async (values: Values, {setSubmitting}: FormikHelpers<Values>) => {
                     setSubmitting(false);
-
-                    const result: any = await CharacterMutation({
+                    let characterValue = {
                         name: values.character_name,
                         status: values.character_status,
                         species: values.character_species,
                         type: values.character_type,
                         gender: values.character_gender
-                    });
+                    };
+                    dispatch(addToHistory(characterValue));
+                    setFormField(characterValue)
+                    const result: any = await CharacterMutation(characterValue);
 
                     setOpenSelectFilter(false);
                     setFilterDataEpisodes(result.data);
                     setPage(1);
                 }
 
-            }
+                }
             >
                 {({values, handleChange, setFieldValue}) => {
                     return (

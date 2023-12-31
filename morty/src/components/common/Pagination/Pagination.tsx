@@ -3,10 +3,17 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import style from './Pagination.module.scss';
 
+// import {useGetDatePageEpisodesCharacterMutation} from "features/episodes/pagination";
+
 const PaginationRounded = ({page, countPage, setPage}: any) => {
+
+    // const [setPageEpisodes] = useGetDatePageEpisodesCharacterMutation()
     const handleChange = (even, value) => {
-        setPage(value)
+        setPage(value);
+
+        // setPageEpisodes({page:value});
     }
+
     // console.log('PaginationRounded page=', page)
     // console.log('PaginationRounded countPage=', countPage)
     return (

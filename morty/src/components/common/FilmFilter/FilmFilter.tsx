@@ -7,9 +7,10 @@ import {useClearFilterMutation} from "features/episodes/episodes";
 interface propsInterface {
     setFilterDataEpisodes: Function;
     setPage: Function;
+    setFormField: Function;
 }
 
-const FilmFilter = ({setPage, setFilterDataEpisodes}: propsInterface) => {
+const FilmFilter = ({setPage,setFormField, setFilterDataEpisodes}: propsInterface) => {
 
     const [openFilter, setOpenFilter] = useState(false);
 
@@ -43,7 +44,7 @@ const FilmFilter = ({setPage, setFilterDataEpisodes}: propsInterface) => {
                 {
                     openFilter &&
                     <div className={styles.filter_form_wrap}>
-                        <FormFilter setPage={setPage} setFilterDataEpisodes={setFilterDataEpisodes}/>
+                        <FormFilter setFormField={setFormField} setPage={setPage} setFilterDataEpisodes={setFilterDataEpisodes}/>
                     </div>
                 }
 
